@@ -1,21 +1,23 @@
 {
   "expo": {
-    "name": "Brainy-Buddy",
-    "slug": "Brainy-Buddy",
+    "name": "Brainy-Buddyt2",
+    "slug": "Brainy-Buddyt2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "brainybuddy",
+    "scheme": "brainybuddyt2",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.iniog.brainybuddyt2"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.iniog.brainybuddyt2"
     },
     "web": {
       "output": "static",
@@ -39,6 +41,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c328b975-1d6d-41ac-9ffc-740c71dc7722"
+      }
     }
   }
 }
