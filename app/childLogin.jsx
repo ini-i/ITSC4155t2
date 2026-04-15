@@ -35,7 +35,7 @@ export default function ChildLoginScreen() {
       await AsyncStorage.setItem("token", data.access_token);
       await AsyncStorage.setItem("username", data.username);
       await AsyncStorage.setItem("user_id", String(data.id));
-      console.log("LOGIN SUCCESS:", data);
+      Alert.alert("SERVER RESPONSE", JSON.stringify(data));
 
       //adding for testing for questions
       //await AsyncStorage.setItem("token", data.access_token);
@@ -44,7 +44,7 @@ export default function ChildLoginScreen() {
       Alert.alert("Welcome!", `Hi ${data.username}!`);
       router.push("/ActivityMap");
     } catch (error) {
-      Alert.alert("Error", "Could not connect to server");
+      Alert.alert("Error", error.message);
       console.log(error);
     }
   };
