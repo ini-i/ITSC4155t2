@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-DATABASE_URL = "sqlite:///./brainypop.db"
+DATABASE_URL = "sqlite:///./brainypop1.db"
 
 engine = create_engine(
     DATABASE_URL, 

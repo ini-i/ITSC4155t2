@@ -57,6 +57,10 @@ def get_db():
 def read_root():
     return {"message": "Brainy Pop API is running!"}
 
+@app.get("/debug/parents")
+def debug_parents(db: Session = Depends(get_db)):
+    return db.query(Parents).all()
+
 
 # ----------------------
 # Student Routes
