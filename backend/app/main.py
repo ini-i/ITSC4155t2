@@ -85,6 +85,7 @@ def student_login(user: UserLogin, db: Session = Depends(get_db)):
 # ----------------------
 # Parent Routes
 # ----------------------
+'''
 @app.post("/parent/register", response_model=ParentResponse)
 def parent_register(parent: ParentCreate, db: Session = Depends(get_db)):
     try:
@@ -107,7 +108,33 @@ def parent_register(parent: ParentCreate, db: Session = Depends(get_db)):
     except Exception as e:
         print(f"Error during registration: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
+'''
 
+@app.post("/parent/register", response_model=ParentResponse)
+def parent_register(parent: ParentCreate, db: Session = Depends(get_db)):
+    try:
+        existing = db.query(Parents).filter(
+            (Parents.username == parent.username) | (Parents.email == parent.email)
+        ).first()
+
+        if existing:
+            raise HTTPException(status_code=400, detail="Parent already exists")
+
+        new_parent = Parents(
+            username=parent.username,
+            email=parent.email,
+            password_hash=hash_password(parent.password)
+        )
+
+        db.add(new_parent)
+        db.commit()
+        db.refresh(new_parent)
+
+        return new_parent
+
+    except Exception as e:
+        print("🔥 REGISTER ERROR:", repr(e))   # 👈 shows error in Render logs
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/parent/login")
 def parent_login(parent: ParentLogin, db: Session = Depends(get_db)):
