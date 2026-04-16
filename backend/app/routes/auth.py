@@ -9,14 +9,16 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def hash_password(password: str):
-    password = password[:72]
-    print("USING UPDATED AUTH FILE1")
-    return pwd_context.hash(password)
+    password_bytes = password.encode("utf-8")
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    return hashed.decode("utf-8")
 
 def verify_password(plain_password, hashed_password):
-    plain_password = plain_password[:72]
-    print("USING UPDATED AUTH FILE2")
-    return pwd_context.verify(plain_password, hashed_password)
+    return bcrypt.checkpw(
+        plain_password.encode("utf-8"),
+        hashed_password.encode("utf-8")
+    )
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
