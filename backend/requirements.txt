@@ -9,6 +9,6 @@ typing_extensions==4.15.0
 urllib3==2.6.3
 fastapi
 uvicorn[standard]
-passlib[bcrypt]
+#passlib[bcrypt]
 bcrypt
 python-jose
